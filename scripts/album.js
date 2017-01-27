@@ -18,6 +18,34 @@ var albumMarconi = {
 	artist: 'Guglielmo Marconi',
 	label: 'EM',
 	year: '1909',
+	albumArtUrl: 'assets/images/album_covers/02.png',
+	songs: [
+		{ title: 'Hello, Operator?', duration: '1:01' },
+		{ title: 'Ring, ring, ring', duration: '5:01' },
+		{ title: 'Fits in your pocket', duration: '3:21'},
+		{ title: 'Can you hear me now?', duration: '3:14' },
+		{ title: 'Wrong phone number', duration: '2:15'}
+	]
+};var albumSmith = {
+	title: 'Pacific Coast Highway',
+	artist: 'Jeff Smith',
+	label: 'WB',
+	year: '2010',
+	albumArtUrl: 'assets/images/album_covers/03.png',
+	songs: [
+		{ title: 'Up and Away', duration: '2:31' },
+		{ title: 'For my love', duration: '3:01' },
+		{ title: 'Lonely Night', duration: '4:01'},
+		{ title: 'White Sand', duration: '3:34' },
+		{ title: 'Jazz It Up', duration: '3:45'}
+	]
+};
+
+var albumMarconi = {
+	title: 'The Telephone',
+	artist: 'Guglielmo Marconi',
+	label: 'EM',
+	year: '1909',
 	albumArtUrl: 'assets/images/album_covers/20.png',
 	songs: [
 		{ title: 'Hello, Operator?', duration: '1:01' },
@@ -61,8 +89,20 @@ var setCurrentAlbum = function(album) {
 	for (var i = 0; i < album.songs.length; i++) {
 		albumSongList.innerHTML += createSongRow(i + 1, album.songs[i].title, album.songs[i].duration);
 	}
+	albumImage.addEventListener("click", function(){
+		var index = albums.indexOf(album);
+		if (index == albums.length-1) {
+			index = 0;
+		}
+		else {
+			index++;
+		}
+		setCurrentAlbum(albums[index]);
+	});
 };
 
+var albums = [albumPicasso, albumMarconi, albumSmith];
+
 window.onload = function() {
-	setCurrentAlbum(albumPicasso);
+	setCurrentAlbum(albums[0]);
 };
