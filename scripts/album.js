@@ -70,12 +70,21 @@ window.onload = function() {
 	var findParentByClassName = function(element, targetClass) {
 		if (element) {
 			var currentParent = element.parentElement;
+			if (currentParent == null) {
+				console.log("No parent found");
+				return null;
+			}
 			while (currentParent.className != targetClass && currentParent.className !== null) {
 				currentParent = currentParent.parentElement;
+				if (currentParent.nodeName == "HTML") {
+					console.log("No parent found with that class name");
+					return null;
+				}
 			}
 			return currentParent;
 		}
 	};
+
 	var getSongItem = function(element) {
     switch (element.className) {
 			case 'album-song-button':
